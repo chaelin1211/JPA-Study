@@ -19,3 +19,5 @@ logging:
     level:
         org.hibernate.SQL: debug
         # hibernate나 jpa에 의해 생성된 쿼리를 로그
+        org.hibernate.type: trace
+        # parameter에 어떤 값이 들어가는지 log 생성
