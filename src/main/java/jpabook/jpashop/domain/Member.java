@@ -3,9 +3,12 @@ package jpabook.jpashop.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,8 +17,16 @@ import lombok.Setter;
 @Getter @Setter
 public class Member {
     @Id @GeneratedValue
+    @Column(name="member_id")
     private Long id;
+
     private String name;
+
+    @Embedded
     private Address address;
+
+    @OneToMany(mappedBy = "member")
+    // 연관 관계의 주인은 order에 있음을 명시
+    // 연결된 필드 -> member
     private List<Order> orders = new ArrayList<>();
 }
