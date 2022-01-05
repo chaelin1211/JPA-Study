@@ -23,9 +23,13 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn(name = "delivery_id")
+    // 일대일인 경우, 액세스를 자주 하는 쪽에 fk를 준다
     private Delivery delivery;
 
     private LocalDateTime ordDateTime; //날짜 + 시간(시, 분, 초)
-    
+
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 }
